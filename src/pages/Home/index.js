@@ -1,6 +1,10 @@
 import { useState } from "react";
 
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
+import { auth } from "../../firebaseConnection";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 import "./style.css";
 
@@ -8,11 +12,21 @@ function Home() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    function handleLogin(e) {
+    const navigate = useNavigate();
+
+    async function handleLogin(e) {
         e.preventDefault();
 
         if (email !== '' && password !== '') {
-            alert("Test");
+
+            await signInWithEmailAndPassword(auth, email, password)
+            .then(() => {
+                navigate("/dashboard", { replace: true })
+            })
+            .catch(() => {
+                console.log("Error in Log In!");
+            })
+
         } else {
             alert("You need to enter the email and the password!");
         }
@@ -31,9 +45,8 @@ function Home() {
                     onChange={(e) => setEmail(e.target.value)}
                 />
                 <input
-                    autoComplete={false}
                     type="password"
-                    placeholder="****"
+                    placeholder="******"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                 />
