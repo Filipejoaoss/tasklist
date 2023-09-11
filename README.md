@@ -2,7 +2,7 @@
 
 Small front-end project that displays the list of tasks stored in Firebase for a logged-in user.
 
-The Framework used for this project was React.
+The technology used for this project was React.
 
 ## Setup and Configuration
 
