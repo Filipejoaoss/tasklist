@@ -2,7 +2,7 @@
 
 Small front-end project that displays the list of tasks stored in Firebase for a logged-in user.
 
-This project used React.
+In this project was used React.
 
 ## Setup and Configuration
 
